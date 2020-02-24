@@ -6,7 +6,7 @@
 # ============================
 
 # libs
-libs <- c("dplyr", "ggplot2", "tidyr", "stringr", "pastecs")
+libs <- c("dplyr", "ggplot2", "tidyr", "stringr")
 
 # install and load
 install.packages(libs)
@@ -68,8 +68,8 @@ sum(is.na(parks$gisobjid))
 parks <- parks[!is.na(parks$gisobjid),]
 table(parks$borough)
 head(parks[parks$borough == "",])
-# there are still a small number of observations that don't have a borough, 
-# but we will leave those in for now
+# there are still a small number of observations that don't have a borough
+parks <- parks[parks$borough != "",]
 
 # reformatting binary variables from Yes/No to 0/1 to make it easier to sum
 parks <- mutate_at(parks, 
@@ -92,6 +92,7 @@ parks_agg <- parks %>%
 
 # attach some sense of how big these parks are and how trafficked they are
 # found some additional data on opendata nyc on area of these parks
+setwd("C:/Users/is2404/Downloads/data-journalism-master/data-journalism-master")
 pdesc <- read.csv(file = "OpenData_ParksProperties.csv", 
                   stringsAsFactors = FALSE)
 names(pdesc)
@@ -116,14 +117,33 @@ head(filter(parks_geo, is.na(OBJECTID)))
 # seems that about 12,767 records do not merge on - this is too many to proceed
 # will go on with just the information we have
 
+# create average amount of time, crew members, etc. per visit
+parks_geo <- parks_geo %>%
+  mutate(avg_ncrew = ncrew / recs,
+         avg_nhours = nhours / recs,
+         avg_nnpw = nnpw / recs)
+
+
 # ==============
 # exploration
 # ==============
 
+# first, questions about time series
+# what is the average vsit length in each year, and has this been changing?
+park_temp <- parks_geo %>%
+  ungroup() %>% group_by(year) %>%
+  summarize_at(vars(starts_with("avg_")), mean, na.rm = TRUE)
+
+# pivot to long
+# which park has the greatest time to clean?
+# what factors contribute the most to park maintenance time?
+
 # how much time on average is spent cleaning each park?
-p <- ggplot(parks_geo, aes(x = year, y = nhours)) +
-  geom_point()
+p <- ggplot(park_temp, aes(x = year)) +
+  geom_line(aes(y = avg_nhours)) +
+  geom_line(aes(y = avg_ncrew))
 p
+
 
 p <- ggplot(parks_geo, aes(x = borough, y = nhours)) +
   geom_point()
