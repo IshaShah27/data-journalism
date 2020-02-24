@@ -1,0 +1,15 @@
+At Data Clinic, we believe rigorous data analysis and engineering can help nonprofits in many ways and we hope our work enables them to focus on what they do best – strengthening the communities they serve. However, one of the toughest challenges we face is translating technical topics to a diverse audience through effective communication, visualization, and data storytelling. 
+
+Your task for this challenge is to review an open data set on NYC Daily Tasks Park Cleaning Records and write a narrative short (1-2 page) report that shares interesting observations or takeaways. Make sure to include at least one data visualization that clearly and simply communicates your idea to the reader. 
+
+You may use any open source software or programming language to analyze and visualize the data. We advise spending approximately 3 hours though you are not limited to that amount of time. Email your report + code to your recruiter and include how much time you spent working on the challenge. 
+                                                        
+Thanks for taking the Data Clinic Data Storytelling Challenge, and we look forward to discussing your findings with you. If you cannot meet that schedule, please let us know.
+
+___
+
+Imagine 
+
+If you're lucky, you have the good fortune of living near a green space in New York. Green space has been shown to result in creased calm, productivity, and general chillness in humans in general. In the concrete jungle gym the is New York city, they're essential to maintaining our humanity. And yet, even a small amount of litter in a park has been shown to be associated with negating its effects. What's more, people are more likely to litter themselves the more litter they see in these parks, 
+
+Imagine you're sitting 
